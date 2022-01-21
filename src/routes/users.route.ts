@@ -7,8 +7,8 @@ const usersRoute = Router();
 
 //endpoint GET
 usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
+    
     const users = await userRepositori.findAllUsers();
-
     res.status(StatusCodes.OK).send(users);
 });
 
@@ -27,12 +27,11 @@ usersRoute.get('/users/:uuid', async(req: Request<{ uuid: string }>, res: Respon
     
 });
 
-
 //endpoint POST
 usersRoute.post('/users', async (req: Request, res: Response, next: NextFunction) => {
     const newUser = req.body;
-    const uuid = await userRepositori.create(newUser)
-    res.status(StatusCodes.CREATED).send(uuid)
+    const uuid = await userRepositori.create(newUser);
+    res.status(StatusCodes.CREATED).send(uuid);
 });
 
 //endpoint PUT
